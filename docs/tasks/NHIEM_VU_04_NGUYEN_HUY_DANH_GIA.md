@@ -12,18 +12,17 @@
 
 ---
 
-## 1. Hướng dẫn tạo nhánh Git & Khởi tạo môi trường (Chạy trước khi code)
+## 1. Hướng dẫn kéo code mới từ `main`, tạo nhánh & khởi tạo môi trường (Chạy trước khi code)
 
 ```bash
-git clone <repository-url>
-cd <project-directory>
+# 1. Nếu bạn ĐÃ clone repo trước đó: kéo code & task mới nhất từ main về
 git checkout main
 git pull origin main
 
-# Tạo và chuyển sang đúng nhánh mang tên bạn (BẮT BUỘC)
+# 2. Tạo và chuyển sang đúng nhánh mang tên bạn (nếu đã tạo trước đó thì chạy: git checkout nguyenhuy/evaluation-qa)
 git checkout -b nguyenhuy/evaluation-qa
 
-# Cài thư viện và tải + kiểm tra toàn bộ dữ liệu tự động
+# 3. Cài thư viện và tải + kiểm tra toàn bộ dữ liệu tự động
 pip install -r requirements.txt
 python scripts/setup_data.py
 python scripts/setup_data.py --verify
@@ -40,6 +39,8 @@ pip install -r requirements.txt
 python scripts/setup_data.py
 python scripts/setup_data.py --verify
 ```
+
+> **Lệnh `python scripts/setup_data.py` tự động làm hết:** tải `spam_ham_dataset.csv` từ Kaggle về `data/raw/spam_ham_dataset.csv`, **tự sao chép vào `data/processed/spam_ham_dataset.csv`**, và sinh sẵn `data/train.csv`, `data/validation.csv`, `data/test.csv`, `data/unlabeled_sample.csv` (bạn KHÔNG cần tải tay).
 
 - **Các tập dữ liệu chuẩn:** `data/train.csv` (350), `data/validation.csv` (75), `data/test.csv` (75).
 - **Bảng dự đoán tổng hợp 3 chế độ trên tập Test (do Trưởng nhóm xuất ở Notebook 05):**
@@ -105,23 +106,54 @@ python scripts/setup_data.py --verify
    - `plot_metric_comparison(comp_df, out_path)` → vẽ biểu đồ cột nhóm so sánh Accuracy/Precision/Recall/F1, lưu `outputs/figures/eval_mode_comparison.png`.
    - `analyze_errors(pred_df, test_df)` → lọc False Positive (`label=='ham'` & `pred_combined=='spam'`) và False Negative (`label=='spam'` & `pred_combined=='ham'`) để phân tích nguyên nhân.
 
-### B. Lệnh chạy kiểm thử & Push code lên đúng nhánh của bạn
+### B. Lệnh chạy kiểm thử & Bộ lệnh Git Push chuẩn (Copy chạy trực tiếp)
+
+**1. Chạy kiểm tra trước khi push:**
 ```bash
-# Mở Jupyter Notebook và chạy Restart & Run All
 jupyter notebook notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb
-
-# Kiểm tra unit test lõi của dự án vẫn PASS
+python scripts/setup_data.py --verify
 python -m unittest discover -s tests -v
+```
 
-# Kiểm tra đúng nhánh và đúng file trước khi push
+**2. Tạo nhánh & chuyển sang nhánh `nguyenhuy/evaluation-qa` rồi push lần đầu (copy chạy từng dòng):**
+```bash
+# Bước 1: Tạo nhánh mới và chuyển sang luôn (nếu đã tạo trước đó rồi thì chạy: git checkout nguyenhuy/evaluation-qa)
+git checkout -b nguyenhuy/evaluation-qa
+
+# Bước 2: Chắc chắn đang ở đúng nhánh của bạn (phải in ra: nguyenhuy/evaluation-qa)
 git branch --show-current
+
+# Bước 3: Xem danh sách file thay đổi (chỉ được có file của bạn)
 git status
 
-# Commit và push LÊN ĐÚNG NHÁNH nguyenhuy/evaluation-qa
+# Bước 4: Add ĐÚNG file của bạn
 git add notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb outputs/evaluation_report.json outputs/figures/eval_*.png docs/test_report.md
+
+# Bước 5: Commit đúng tiền tố feat(nguyenhuy):
 git commit -m "feat(nguyenhuy): danh gia 3 che do, ve confusion matrix va error analysis"
+
+# Bước 6: Push lên đúng nhánh của bạn
 git push -u origin nguyenhuy/evaluation-qa
 ```
+
+**3. Các lần sửa tiếp theo (push bổ sung):**
+```bash
+git add notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb outputs/evaluation_report.json outputs/figures/eval_*.png docs/test_report.md
+git commit -m "fix(nguyenhuy): cap nhat bao cao danh gia va phan tich loi"
+git push
+```
+
+**4. Khi Trưởng nhóm đã xuất `outputs/hybrid_test_predictions.csv` lên `main`, kéo về rồi chạy lại Notebook 04:**
+```bash
+git fetch origin
+git merge origin/main
+# Chạy lại Restart & Run All trong Notebook 04 rồi push lại
+git add notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb outputs/evaluation_report.json outputs/figures/eval_*.png docs/test_report.md
+git commit -m "docs(nguyenhuy): cap nhat so lieu danh gia chinh thuc tu hybrid test"
+git push
+```
+
+> **CẤM:** Tuyệt đối KHÔNG chạy `git push origin main` và KHÔNG sửa file của thành viên khác.
 
 ---
 

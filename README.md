@@ -79,5 +79,6 @@ python -m unittest discover -s tests -v
 
 ## Tài liệu nội bộ cho nhóm
 
+- Giải thích chi tiết các hàm `src/` & thuật toán: `docs/GIAI_THICH_HAM_VA_THUAT_TOAN.md`
 - Quy ước code chung & phân công: `docs/QUY_UOC_CHUNG_VA_PHAN_CONG.md`
 - Giao nhiệm vụ & prompt cho từng thành viên: `docs/tasks/`

@@ -13,18 +13,17 @@
 
 ---
 
-## 1. Hướng dẫn tạo nhánh Git & Khởi tạo môi trường (Chạy trước khi code)
+## 1. Hướng dẫn kéo code mới từ `main`, tạo nhánh & khởi tạo môi trường (Chạy trước khi code)
 
 ```bash
-git clone <repository-url>
-cd <project-directory>
+# 1. Nếu bạn ĐÃ clone repo trước đó: kéo code & task mới nhất từ main về
 git checkout main
 git pull origin main
 
-# Tạo và chuyển sang đúng nhánh mang tên bạn (BẮT BUỘC)
+# 2. Tạo và chuyển sang đúng nhánh mang tên bạn (nếu đã tạo trước đó thì chạy: git checkout leehuy/statistics-classification)
 git checkout -b leehuy/statistics-classification
 
-# Cài thư viện và tải + kiểm tra toàn bộ dữ liệu tự động
+# 3. Cài thư viện và tải + kiểm tra toàn bộ dữ liệu tự động
 pip install -r requirements.txt
 python scripts/setup_data.py
 python scripts/setup_data.py --verify
@@ -41,6 +40,8 @@ pip install -r requirements.txt
 python scripts/setup_data.py
 python scripts/setup_data.py --verify
 ```
+
+> **Lệnh `python scripts/setup_data.py` tự động làm hết:** tải `spam_ham_dataset.csv` từ Kaggle về `data/raw/spam_ham_dataset.csv`, **tự sao chép vào `data/processed/spam_ham_dataset.csv`**, và sinh sẵn `data/train.csv`, `data/validation.csv`, `data/test.csv`, `data/unlabeled_sample.csv` (bạn KHÔNG cần tải tay).
 
 - **Tập Train (DUY NHẤT dùng để tính trọng số từ khóa):** `data/train.csv` (350 email: 175 `spam` / 175 `ham`, 7 cột chuẩn).
 - **Tập Validation & Test (chỉ dùng để chấm điểm `S_stat`):** `data/validation.csv` (75 email), `data/test.csv` (75 email).
@@ -191,23 +192,51 @@ Sau đó vẽ histogram phân bố `stat_score` giữa `spam` và `ham` trên `s
    - `score_stat_dataframe(df, model)` → duyệt từng dòng cột `stat_text`, gọi `score_statistics(str(text).split(), model, top_k=5)`, trả về DataFrame 5 cột `email_id,label,label_num,stat_score,top_keywords` rồi xuất `outputs/stat_val_scores.csv` và `outputs/stat_test_scores.csv`.
    - `plot_stat_score_distribution(val_scored_df, out_path)` → vẽ phân bố `stat_score` trên validation, lưu `outputs/figures/stat_score_distribution.png`.
 
-### B. Lệnh chạy kiểm thử & Push code lên đúng nhánh của bạn
+### B. Lệnh chạy kiểm thử & Bộ lệnh Git Push chuẩn (Copy chạy trực tiếp)
+
+**1. Chạy kiểm tra trước khi push:**
 ```bash
-# Mở Jupyter Notebook và chạy Restart & Run All
 jupyter notebook notebooks/03_PHAN_LOAI_THONG_KE_TU_KHOA.ipynb
-
-# Kiểm tra unit test lõi của dự án vẫn PASS
+python scripts/setup_data.py --verify
 python -m unittest discover -s tests -v
+```
 
-# Kiểm tra đúng nhánh và đúng file trước khi push
+**2. Tạo nhánh & chuyển sang nhánh `leehuy/statistics-classification` rồi push lần đầu (copy chạy từng dòng):**
+```bash
+# Bước 1: Tạo nhánh mới và chuyển sang luôn (nếu đã tạo trước đó rồi thì chạy: git checkout leehuy/statistics-classification)
+git checkout -b leehuy/statistics-classification
+
+# Bước 2: Chắc chắn đang ở đúng nhánh của bạn (phải in ra: leehuy/statistics-classification)
 git branch --show-current
+
+# Bước 3: Xem danh sách file thay đổi (chỉ được có file của bạn)
 git status
 
-# Commit và push LÊN ĐÚNG NHÁNH leehuy/statistics-classification
+# Bước 4: Add ĐÚNG file của bạn (file keyword_stats.json nằm trong data/processed/ nên đã được .gitignore bảo vệ khỏi đẩy nhầm CSV)
 git add notebooks/03_PHAN_LOAI_THONG_KE_TU_KHOA.ipynb outputs/stat_val_scores.csv outputs/stat_test_scores.csv outputs/figures/stat_*.png docs/statistics_method.md
+
+# Bước 5: Commit đúng tiền tố feat(leehuy):
 git commit -m "feat(leehuy): huan luyen thong ke tu khoa va cham diem S_stat"
+
+# Bước 6: Push lên đúng nhánh của bạn
 git push -u origin leehuy/statistics-classification
 ```
+
+**3. Các lần sửa tiếp theo (push bổ sung):**
+```bash
+git add notebooks/03_PHAN_LOAI_THONG_KE_TU_KHOA.ipynb outputs/stat_val_scores.csv outputs/stat_test_scores.csv outputs/figures/stat_*.png docs/statistics_method.md
+git commit -m "fix(leehuy): cap nhat bieu do va ket qua thong ke tu khoa"
+git push
+```
+
+**4. Nếu Trưởng nhóm báo cập nhật `main`, đồng bộ về nhánh của bạn:**
+```bash
+git fetch origin
+git merge origin/main
+git push
+```
+
+> **CẤM:** Tuyệt đối KHÔNG chạy `git push origin main` và KHÔNG dùng `git add -f data/...`.
 
 ---
 

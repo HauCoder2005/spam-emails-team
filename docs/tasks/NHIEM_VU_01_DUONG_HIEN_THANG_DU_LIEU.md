@@ -12,16 +12,14 @@
 
 ---
 
-## 1. Hướng dẫn tạo nhánh Git & Khởi tạo môi trường (Chạy trước khi code)
+## 1. Hướng dẫn kéo code mới từ `main`, tạo nhánh & khởi tạo môi trường (Chạy trước khi code)
 
 ```bash
-# 1. Clone repo (nếu chưa có) và đồng bộ nhánh main mới nhất
-git clone <repository-url>
-cd <project-directory>
+# 1. Nếu bạn ĐÃ clone repo trước đó: kéo code & task mới nhất từ main về
 git checkout main
 git pull origin main
 
-# 2. Tạo và chuyển sang đúng nhánh mang tên bạn (BẮT BUỘC)
+# 2. Tạo và chuyển sang đúng nhánh mang tên bạn (nếu đã tạo trước đó thì chạy: git checkout thang/eda-preprocessing)
 git checkout -b thang/eda-preprocessing
 
 # 3. Cài thư viện và tải + kiểm tra toàn bộ dữ liệu tự động
@@ -102,23 +100,50 @@ Sau lệnh trên, repo của bạn đã có sẵn:
    - `plot_top_words_by_class(df, top_n=20, out_path=...)` → gọi `tokenize()` + `filter_stat_tokens()` từ `src.preprocessing`, vẽ top 20 từ Spam vs Ham, lưu `outputs/figures/eda_top_words.png`.
    - `verify_split_integrity(train_df, val_df, test_df)` → `assert` kiểm tra đủ 7 cột, đủ số lượng `350/75/75` và **0 bản ghi trùng `clean_text`** giữa 3 tập.
 
-### B. Lệnh chạy kiểm thử & Push code lên đúng nhánh của bạn
+### B. Lệnh chạy kiểm thử & Bộ lệnh Git Push chuẩn (Copy chạy trực tiếp)
+
+**1. Chạy kiểm tra trước khi push:**
 ```bash
-# Mở Jupyter Notebook và chọn Restart & Run All
 jupyter notebook notebooks/01_EDA_VA_TIEN_XU_LY_DU_LIEU.ipynb
-
-# Kiểm tra lại dữ liệu chuẩn
 python scripts/setup_data.py --verify
+```
 
-# Kiểm tra đúng nhánh và đúng file của mình trước khi push
+**2. Tạo nhánh & chuyển sang nhánh `thang/eda-preprocessing` rồi push lần đầu (copy chạy từng dòng):**
+```bash
+# Bước 1: Tạo nhánh mới và chuyển sang luôn (nếu đã tạo trước đó rồi thì chạy: git checkout thang/eda-preprocessing)
+git checkout -b thang/eda-preprocessing
+
+# Bước 2: Chắc chắn đang ở đúng nhánh của bạn (phải in ra: thang/eda-preprocessing)
 git branch --show-current
+
+# Bước 3: Xem danh sách file thay đổi (chỉ được có file của bạn)
 git status
 
-# Commit và push LÊN ĐÚNG NHÁNH thang/eda-preprocessing
+# Bước 4: Add ĐÚNG file của bạn (KHÔNG dùng git add -f cho file CSV trong data/)
 git add notebooks/01_EDA_VA_TIEN_XU_LY_DU_LIEU.ipynb outputs/figures/eda_*.png docs/data_description.md
+
+# Bước 5: Commit đúng tiền tố feat(thang):
 git commit -m "feat(thang): hoan thanh EDA, tien xu ly va kiem chung du lieu"
+
+# Bước 6: Push lên đúng nhánh của bạn
 git push -u origin thang/eda-preprocessing
 ```
+
+**3. Các lần sửa tiếp theo (push bổ sung):**
+```bash
+git add notebooks/01_EDA_VA_TIEN_XU_LY_DU_LIEU.ipynb outputs/figures/eda_*.png docs/data_description.md
+git commit -m "fix(thang): cap nhat bieu do EDA va bao cao du lieu"
+git push
+```
+
+**4. Nếu Trưởng nhóm báo cập nhật `main`, đồng bộ về nhánh của bạn:**
+```bash
+git fetch origin
+git merge origin/main
+git push
+```
+
+> **CẤM:** Tuyệt đối KHÔNG chạy `git push origin main` và KHÔNG chạy `git add -f data/...`.
 
 ---
 

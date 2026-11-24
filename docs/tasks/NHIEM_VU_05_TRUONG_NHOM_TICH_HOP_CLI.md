@@ -25,6 +25,8 @@ python scripts/setup_data.py
 python scripts/setup_data.py --verify
 ```
 
+> **Lệnh `python scripts/setup_data.py` tự động làm hết:** tải `spam_ham_dataset.csv` từ Kaggle về `data/raw/spam_ham_dataset.csv`, **tự sao chép vào `data/processed/spam_ham_dataset.csv`**, và sinh sẵn `data/train.csv`, `data/validation.csv`, `data/test.csv`, `data/unlabeled_sample.csv`.
+
 | Bước | Thành viên | Notebook | Đầu ra bàn giao |
 |---|---|---|---|
 | **1** | **Dương Hiển Thắng** | `notebooks/01_EDA_VA_TIEN_XU_LY_DU_LIEU.ipynb` | `data/train.csv`, `data/validation.csv`, `data/test.csv`, `data/unlabeled_sample.csv` |
@@ -82,6 +84,15 @@ python scripts/setup_data.py --verify
    # Kiểm thử toàn bộ hệ thống trước khi đẩy main cuối cùng
    python scripts/setup_data.py --verify
    python -m unittest discover -s tests -v
+   git push origin main
+   ```
+
+4. **Bộ lệnh khởi tạo & push nhánh `lead/hybrid-integration` của riêng Trưởng nhóm:**
+   ```bash
+   git checkout -b lead/hybrid-integration
+   git add notebooks/05_TICH_HOP_HYBRID_GAN_NHAN_DEMO.ipynb config/settings.json outputs/hybrid_val_predictions.csv outputs/hybrid_test_predictions.csv outputs/labeled_new_emails.csv
+   git commit -m "feat(lead): tich hop hybrid classification, toi uu nguong va gan nhan demo"
+   git push -u origin lead/hybrid-integration
    ```
 
 ---

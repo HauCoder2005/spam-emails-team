@@ -13,18 +13,17 @@
 
 ---
 
-## 1. Hướng dẫn tạo nhánh Git & Khởi tạo môi trường (Chạy trước khi code)
+## 1. Hướng dẫn kéo code mới từ `main`, tạo nhánh & khởi tạo môi trường (Chạy trước khi code)
 
 ```bash
-git clone <repository-url>
-cd <project-directory>
+# 1. Nếu bạn ĐÃ clone repo trước đó: kéo code & task mới nhất từ main về
 git checkout main
 git pull origin main
 
-# Tạo và chuyển sang đúng nhánh mang tên bạn (BẮT BUỘC)
+# 2. Tạo và chuyển sang đúng nhánh mang tên bạn (nếu đã tạo trước đó thì chạy: git checkout kiet/rule-classification)
 git checkout -b kiet/rule-classification
 
-# Cài thư viện và tải + kiểm tra toàn bộ dữ liệu tự động
+# 3. Cài thư viện và tải + kiểm tra toàn bộ dữ liệu tự động
 pip install -r requirements.txt
 python scripts/setup_data.py
 python scripts/setup_data.py --verify
@@ -41,6 +40,8 @@ pip install -r requirements.txt
 python scripts/setup_data.py
 python scripts/setup_data.py --verify
 ```
+
+> **Lệnh `python scripts/setup_data.py` tự động làm hết:** tải `spam_ham_dataset.csv` từ Kaggle về `data/raw/spam_ham_dataset.csv`, **tự sao chép vào `data/processed/spam_ham_dataset.csv`**, và sinh sẵn `data/train.csv`, `data/validation.csv`, `data/test.csv`, `data/unlabeled_sample.csv` (bạn KHÔNG cần tải tay).
 
 - **Tập Train (để khảo sát từ khóa & thiết kế quy tắc):** `data/train.csv` (350 email, 7 cột chuẩn).
 - **Tập Validation (để chấm điểm & tìm ngưỡng `T_rule` sơ bộ):** `data/validation.csv` (75 email).
@@ -96,23 +97,51 @@ python scripts/setup_data.py --verify
    - `score_dataframe(df, rules)` → lặp từng dòng cột `clean_text`, gọi `score_rules(str(text).split(), rules)` từ `src.rules`, trả về DataFrame 5 cột `email_id,label,label_num,rule_score,matched_rules`.
    - `plot_rule_score_distribution(val_scored_df, out_path)` → vẽ histogram phân bố `rule_score` giữa `spam` và `ham`, lưu `outputs/figures/rule_score_distribution.png`.
 
-### B. Lệnh chạy kiểm thử & Push code lên đúng nhánh của bạn
+### B. Lệnh chạy kiểm thử & Bộ lệnh Git Push chuẩn (Copy chạy trực tiếp)
+
+**1. Chạy kiểm tra trước khi push:**
 ```bash
-# Mở Jupyter Notebook và chạy Restart & Run All
 jupyter notebook notebooks/02_PHAN_LOAI_THEO_QUY_TAC_RULE.ipynb
-
-# Kiểm tra unit test lõi của dự án vẫn PASS
+python scripts/setup_data.py --verify
 python -m unittest discover -s tests -v
+```
 
-# Kiểm tra đúng nhánh và đúng file trước khi push
+**2. Tạo nhánh & chuyển sang nhánh `kiet/rule-classification` rồi push lần đầu (copy chạy từng dòng):**
+```bash
+# Bước 1: Tạo nhánh mới và chuyển sang luôn (nếu đã tạo trước đó rồi thì chạy: git checkout kiet/rule-classification)
+git checkout -b kiet/rule-classification
+
+# Bước 2: Chắc chắn đang ở đúng nhánh của bạn (phải in ra: kiet/rule-classification)
 git branch --show-current
+
+# Bước 3: Xem danh sách file thay đổi (chỉ được có file của bạn)
 git status
 
-# Commit và push LÊN ĐÚNG NHÁNH kiet/rule-classification
+# Bước 4: Add ĐÚNG file của bạn
 git add notebooks/02_PHAN_LOAI_THEO_QUY_TAC_RULE.ipynb config/rules.json outputs/rule_val_scores.csv outputs/rule_test_scores.csv outputs/figures/rule_*.png docs/rule_specification.md
+
+# Bước 5: Commit đúng tiền tố feat(kiet):
 git commit -m "feat(kiet): xay dung bo quy tac rules.json va cham diem rule-based"
+
+# Bước 6: Push lên đúng nhánh của bạn
 git push -u origin kiet/rule-classification
 ```
+
+**3. Các lần sửa tiếp theo (push bổ sung):**
+```bash
+git add notebooks/02_PHAN_LOAI_THEO_QUY_TAC_RULE.ipynb config/rules.json outputs/rule_val_scores.csv outputs/rule_test_scores.csv outputs/figures/rule_*.png docs/rule_specification.md
+git commit -m "fix(kiet): cap nhat bo quy tac va diem rule-based"
+git push
+```
+
+**4. Nếu Trưởng nhóm báo cập nhật `main`, đồng bộ về nhánh của bạn:**
+```bash
+git fetch origin
+git merge origin/main
+git push
+```
+
+> **CẤM:** Tuyệt đối KHÔNG chạy `git push origin main` và KHÔNG sửa bất kỳ file nào trong `src/`.
 
 ---
 
