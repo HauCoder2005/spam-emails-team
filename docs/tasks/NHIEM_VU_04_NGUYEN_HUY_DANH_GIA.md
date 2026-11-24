@@ -1,9 +1,9 @@
 # Giao nhiệm vụ 04 — Phí Đặng Nguyên Huy... (Đánh giá, So sánh & Phân tích lỗi — `.ipynb`)
 
 - **Phụ trách:** **Phí Đặng Nguyên Huy...** (Thành viên 4)
-- **Nhánh Git:** `feature/evaluation-qa`
+- **Nhánh Git BẮT BUỘC:** `nguyenhuy/evaluation-qa` *(chỉ code & push lên đúng nhánh này, KHÔNG push thẳng lên `main`)*
 - **File Notebook chính:** `notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb`
-- **Tài liệu bắt buộc đọc trước:** `docs/QUY_UOC_CHUNG_VA_PHAN_CONG.md`
+- **Tài liệu bắt buộc đọc trước:** `AGENTS.md` và `docs/QUY_UOC_CHUNG_VA_PHAN_CONG.md`
 - **File bạn sở hữu (chỉ tạo/sửa các file này):**
   - `notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb`
   - `outputs/evaluation_report.json`
@@ -12,7 +12,26 @@
 
 ---
 
-## 1. Dataset Setup — Required Before Starting Tasks
+## 1. Hướng dẫn tạo nhánh Git & Khởi tạo môi trường (Chạy trước khi code)
+
+```bash
+git clone <repository-url>
+cd <project-directory>
+git checkout main
+git pull origin main
+
+# Tạo và chuyển sang đúng nhánh mang tên bạn (BẮT BUỘC)
+git checkout -b nguyenhuy/evaluation-qa
+
+# Cài thư viện và tải + kiểm tra toàn bộ dữ liệu tự động
+pip install -r requirements.txt
+python scripts/setup_data.py
+python scripts/setup_data.py --verify
+```
+
+---
+
+## 2. Dataset Setup — Required Before Starting Tasks
 
 Trước khi bắt đầu làm task, chạy lệnh sau để tự động khởi tạo hoặc xác thực đầy đủ bộ dữ liệu trên máy bạn:
 
@@ -30,7 +49,7 @@ python scripts/setup_data.py --verify
 
 ---
 
-## 2. Cấu trúc chi tiết từng phần trong `notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb`
+## 3. Cấu trúc chi tiết từng phần trong `notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb`
 
 1. **Kiểm tra chống rò rỉ dữ liệu (Data Leakage Audit — T13):**
    - Đọc `data/train.csv`, `data/validation.csv`, `data/test.csv`, kiểm tra giao nhau theo `clean_text` giữa 3 cặp tập `(train, val)`, `(train, test)`, `(val, test)` → xác nhận `0` bản ghi trùng.
@@ -59,23 +78,61 @@ python scripts/setup_data.py --verify
 
 ---
 
-## 3. Cách chạy & Kiểm tra
+## 4. Hướng dẫn tạo file, code hàm & lệnh chạy / push Git
 
-```powershell
-pip install -r requirements.txt
+### A. Tạo file & khung code chuẩn trong `notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb`
+1. **Cell 1 (Import hàm lõi của Trưởng nhóm — BẮT BUỘC):**
+   ```python
+   import sys
+   from pathlib import Path
+   import pandas as pd
+   import matplotlib.pyplot as plt
+   import seaborn as sns
+
+   PROJECT_ROOT = Path("..").resolve()
+   if str(PROJECT_ROOT) not in sys.path:
+       sys.path.insert(0, str(PROJECT_ROOT))
+
+   from src.preprocessing import load_emails_from_csv
+   from src.evaluation import (
+       evaluate, evaluate_majority_baseline, check_data_leakage, export_evaluation_json
+   )
+   ```
+2. **Các hàm phụ trợ cần viết trong Notebook:**
+   - `run_leakage_audit()` → gọi `load_emails_from_csv` cho `train/validation/test.csv` và gọi `check_data_leakage(...)` từ `src.evaluation`, `assert not report["has_leakage"]`.
+   - `build_comparison_table(pred_df, train_labels)` → gọi `evaluate_majority_baseline` và `evaluate` cho 3 cột `pred_rule`, `pred_stat`, `pred_combined`, trả về DataFrame so sánh 4 mô hình.
+   - `plot_confusion_matrices(metrics_by_mode, out_path)` → vẽ 3 Confusion Matrix Heatmap đặt cạnh nhau, lưu `outputs/figures/eval_confusion_matrices.png`.
+   - `plot_metric_comparison(comp_df, out_path)` → vẽ biểu đồ cột nhóm so sánh Accuracy/Precision/Recall/F1, lưu `outputs/figures/eval_mode_comparison.png`.
+   - `analyze_errors(pred_df, test_df)` → lọc False Positive (`label=='ham'` & `pred_combined=='spam'`) và False Negative (`label=='spam'` & `pred_combined=='ham'`) để phân tích nguyên nhân.
+
+### B. Lệnh chạy kiểm thử & Push code lên đúng nhánh của bạn
+```bash
+# Mở Jupyter Notebook và chạy Restart & Run All
 jupyter notebook notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb
+
+# Kiểm tra unit test lõi của dự án vẫn PASS
+python -m unittest discover -s tests -v
+
+# Kiểm tra đúng nhánh và đúng file trước khi push
+git branch --show-current
+git status
+
+# Commit và push LÊN ĐÚNG NHÁNH nguyenhuy/evaluation-qa
+git add notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb outputs/evaluation_report.json outputs/figures/eval_*.png docs/test_report.md
+git commit -m "feat(nguyenhuy): danh gia 3 che do, ve confusion matrix va error analysis"
+git push -u origin nguyenhuy/evaluation-qa
 ```
 
 ---
 
-## 4. Prompt chuẩn để giao cho AI Agent
+## 5. Prompt chuẩn để giao cho AI Agent
 
 Copy nguyên văn gửi cho AI Agent trong workspace của bạn:
 
 ```text
 Bạn đang đóng vai trò Thành viên 4 — Phí Đặng Nguyên Huy... (Đánh giá, So sánh & Phân tích lỗi) trong dự án Phân loại Spam Email bằng Jupyter Notebook (`.ipynb`).
 
-BẮT BUỘC đọc kỹ `docs/QUY_UOC_CHUNG_VA_PHAN_CONG.md` trước khi làm.
+BẮT BUỘC đọc kỹ `AGENTS.md` và `docs/QUY_UOC_CHUNG_VA_PHAN_CONG.md` trước khi làm. Chỉ làm việc trên nhánh `nguyenhuy/evaluation-qa`.
 
 Database đầu vào & Thư viện hàm lõi Trưởng nhóm đã viết sẵn:
 - `data/train.csv`, `data/validation.csv`, `data/test.csv`.

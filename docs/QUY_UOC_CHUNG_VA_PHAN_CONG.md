@@ -28,13 +28,13 @@ flowchart LR
 
 Mỗi thành viên làm trên **nhánh Git riêng** và **CHỈ tạo/sửa đúng các file của mình**:
 
-| Thành viên | Nhánh Git | File Notebook chính (`.ipynb`) | File dữ liệu / kết quả sở hữu |
+| Thành viên | Nhánh Git bắt buộc | File Notebook chính (`.ipynb`) | File dữ liệu / kết quả sở hữu |
 |---|---|---|---|
-| **1. Dương Hiển Thắng** | `feature/eda-preprocessing` | `notebooks/01_EDA_VA_TIEN_XU_LY_DU_LIEU.ipynb` | `data/train.csv`, `data/validation.csv`, `data/test.csv`, `data/unlabeled_sample.csv`, `outputs/figures/eda_*.png`, `docs/data_description.md` |
-| **2. Nguyễn Kiệt** | `feature/rule-classification` | `notebooks/02_PHAN_LOAI_THEO_QUY_TAC_RULE.ipynb` | `config/rules.json`, `outputs/rule_val_scores.csv`, `outputs/rule_test_scores.csv`, `outputs/figures/rule_*.png`, `docs/rule_specification.md` |
-| **3. leehuy** | `feature/statistics-classification` | `notebooks/03_PHAN_LOAI_THONG_KE_TU_KHOA.ipynb` | `data/processed/keyword_stats.json`, `outputs/stat_val_scores.csv`, `outputs/stat_test_scores.csv`, `outputs/figures/stat_*.png`, `docs/statistics_method.md` |
-| **4. Phí Đặng Nguyên Huy...** | `feature/evaluation-qa` | `notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb` | `outputs/evaluation_report.json`, `outputs/figures/eval_*.png`, `docs/test_report.md` |
-| **5. Bạn *(Trưởng nhóm)*** | `main` / `feature/hybrid-demo` | `notebooks/05_TICH_HOP_HYBRID_GAN_NHAN_DEMO.ipynb` | `config/settings.json`, `outputs/hybrid_val_predictions.csv`, `outputs/hybrid_test_predictions.csv`, `outputs/labeled_new_emails.csv`, `README.md`, `requirements.txt` |
+| **1. Dương Hiển Thắng** | `thang/eda-preprocessing` | `notebooks/01_EDA_VA_TIEN_XU_LY_DU_LIEU.ipynb` | `outputs/figures/eda_*.png`, `docs/data_description.md` *(chạy `setup_data.py` để sinh `train/val/test/unlabeled.csv`)* |
+| **2. Nguyễn Kiệt** | `kiet/rule-classification` | `notebooks/02_PHAN_LOAI_THEO_QUY_TAC_RULE.ipynb` | `config/rules.json`, `outputs/rule_val_scores.csv`, `outputs/rule_test_scores.csv`, `outputs/figures/rule_*.png`, `docs/rule_specification.md` |
+| **3. leehuy** | `leehuy/statistics-classification` | `notebooks/03_PHAN_LOAI_THONG_KE_TU_KHOA.ipynb` | `data/processed/keyword_stats.json`, `outputs/stat_val_scores.csv`, `outputs/stat_test_scores.csv`, `outputs/figures/stat_*.png`, `docs/statistics_method.md` |
+| **4. Phí Đặng Nguyên Huy...** | `nguyenhuy/evaluation-qa` | `notebooks/04_DANH_GIA_SO_SANH_VA_PHAN_TICH_LOI.ipynb` | `outputs/evaluation_report.json`, `outputs/figures/eval_*.png`, `docs/test_report.md` |
+| **5. Bạn *(Trưởng nhóm)*** | `main` / `lead/hybrid-integration` | `notebooks/05_TICH_HOP_HYBRID_GAN_NHAN_DEMO.ipynb`, `notebooks/06_TONG_HOP_TOAN_BO_DU_AN.ipynb` | `src/*`, `scripts/*`, `tests/*`, `config/settings.json`, `data/manifest.json`, `outputs/hybrid_*.csv`, `outputs/labeled_new_emails.csv`, `AGENTS.md`, `README.md`, `requirements.txt`, `.gitignore` |
 
 ---
 
@@ -132,3 +132,48 @@ Tất cả 3 tập sau bước **Processing & Đánh nhãn** (do Dương Hiển 
 4. **Đánh giá 1 lần trên `data/test.csv`:** Không sửa luật/ngưỡng sau khi đã xem kết quả Test.
 5. **Không gọi điểm số là "xác suất %":** Điểm `S_rule ∈ [-5, +5]`, `S_stat ∈ [-4, +4]`, `S_total = S_rule + S_stat` là điểm phân loại có ngưỡng, không phải xác suất.
 6. **Spam (`1`) là lớp dương (Positive)** trong toàn bộ Confusion Matrix và các công thức Precision, Recall, F1, FPR.
+
+---
+
+## 6. Hướng dẫn chi tiết xử lý toàn bộ các loại Tiền tố (Prefix)
+
+Để cả nhóm xử lý nhất quán từ dữ liệu đến Git và tránh ghi đè file của nhau, mọi thành viên áp dụng đúng 4 nhóm tiền tố sau:
+
+### 6.1. Tiền tố trong văn bản Email (`Subject:`, `Re:`, `Fwd:`, `FW:`)
+- **Tiền tố `Subject:` ở dòng đầu cột `text` (trong `spam_ham_dataset.csv`):**
+  - Đã được xử lý thống nhất bằng hàm `split_subject_body(raw_text)` trong `src/preprocessing.py`:
+    - Nếu dòng đầu bắt đầu bằng `Subject:` (không phân biệt hoa/thường) → cắt bỏ tiền tố `Subject:` và lấy phần còn lại của dòng đó làm `subject`; các dòng tiếp theo làm `body`.
+    - Nếu không có `Subject:` → `subject = ""` và toàn bộ nội dung là `body`.
+  - **Không để dính chữ `subject` vào nội dung email** vì mọi email trong Enron-Spam đều mở đầu bằng `Subject:`, nếu không cắt bỏ thì từ `"subject"` sẽ xuất hiện ở 100% email làm nhiễu thống kê và biểu đồ EDA.
+- **Tiền tố trả lời/chuyển tiếp (`Re:`, `Fwd:`, `FW:`):**
+  - Trong `clean_text` (cho Rule Engine) có thể giữ nguyên hoặc chuẩn hóa theo `tokenize()` để không phá cụm từ.
+  - Trong `stat_text` (cho Statistics Engine), các token 1 ký tự đã bị loại (`len < 2`), còn `"re"` / `"fw"` nếu xuất hiện nhiều trong Ham có thể được phân tích trong mục EDA để giải thích vì sao email nội bộ hay có `"re"`/`"fw"`.
+
+### 6.2. Tiền tố mã định danh (ID Prefix) trong dữ liệu & cấu hình
+| Tiền tố | Áp dụng cho | Ví dụ |
+|---|---|---|
+| `E` | Email có nhãn trong `train.csv` / `validation.csv` / `test.csv` (4 chữ số) | `E0001` → `E0500` |
+| `U` | Email chưa có nhãn trong `unlabeled_sample.csv` (3 chữ số) | `U001` → `U030` |
+| `R` | Mã quy tắc lọc từ khóa trong `config/rules.json` (3 chữ số) | `R001` → `R030` |
+
+### 6.3. Tiền tố tên file biểu đồ (`outputs/figures/`) & kết quả (`outputs/`)
+Mỗi thành viên dùng đúng tiền tố của mình để gộp nhánh **không bao giờ trùng tên file**:
+- **Dương Hiển Thắng:** `outputs/figures/eda_*.png`
+- **Nguyễn Kiệt:** `outputs/rule_*.csv`, `outputs/figures/rule_*.png`
+- **leehuy:** `outputs/stat_*.csv`, `outputs/figures/stat_*.png`
+- **Phí Đặng Nguyên Huy...:** `outputs/evaluation_report.json`, `outputs/figures/eval_*.png`
+- **Trưởng nhóm:** `outputs/hybrid_*.csv`, `outputs/labeled_new_emails.csv`, `outputs/figures/hybrid_*.png`
+
+### 6.4. Tiền tố nhánh Git & Commit Message
+- **Tiền tố nhánh Git bắt buộc theo tên thành viên:**
+  - `thang/...` (Dương Hiển Thắng) → `thang/eda-preprocessing`
+  - `kiet/...` (Nguyễn Kiệt) → `kiet/rule-classification`
+  - `leehuy/...` (leehuy) → `leehuy/statistics-classification`
+  - `nguyenhuy/...` (Phí Đặng Nguyên Huy...) → `nguyenhuy/evaluation-qa`
+  - `lead/...` (Trưởng nhóm) → `lead/hybrid-integration`
+- **Tiền tố Commit Message (Conventional Commits):**
+  - `feat(<tên>): ...` — Thêm notebook, biểu đồ, bộ quy tắc hoặc tính năng mới *(ví dụ: `feat(kiet): them 28 quy tac vao config/rules.json`)*
+  - `fix(<tên>): ...` — Sửa lỗi code hoặc sửa sai biểu đồ/công thức
+  - `docs(<tên>): ...` — Viết hoặc cập nhật báo cáo `.md`
+  - `test(<tên>): ...` — Bổ sung hoặc cập nhật unit test
+  - `chore(<tên>): ...` — Cập nhật cấu hình, `.gitignore`, `requirements.txt`
