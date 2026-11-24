@@ -1,0 +1,72 @@
+{
+  "dataset_id": "venky73/spam-mails-dataset",
+  "dataset_version": 1,
+  "kagglehub_handle": "venky73/spam-mails-dataset/versions/1",
+  "source_url": "https://www.kaggle.com/datasets/venky73/spam-mails-dataset",
+  "raw_filename": "spam_ham_dataset.csv",
+  "raw_path": "data/raw/spam_ham_dataset.csv",
+  "raw_sha256": "65386c0361eb99c0be3835d6488cbb9dda2ae0575eb37d2ab543c52a2c7619cb",
+  "expected_raw_rows": 5171,
+  "expected_raw_schema": {
+    "required_columns": ["text", "label", "label_num"],
+    "allowed_labels": ["ham", "spam"],
+    "allowed_label_nums": ["0", "1"]
+  },
+  "random_seed": 42,
+  "split_config": {
+    "total_labeled_samples": 500,
+    "per_class_samples": {
+      "spam": 250,
+      "ham": 250
+    },
+    "splits": {
+      "train": {
+        "path": "data/train.csv",
+        "total": 350,
+        "spam": 175,
+        "ham": 175
+      },
+      "validation": {
+        "path": "data/validation.csv",
+        "total": 75,
+        "spam": 38,
+        "ham": 37
+      },
+      "test": {
+        "path": "data/test.csv",
+        "total": 75,
+        "spam": 37,
+        "ham": 38
+      }
+    },
+    "unlabeled_sample": {
+      "path": "data/unlabeled_sample.csv",
+      "total": 30
+    }
+  },
+  "expected_output_schema": {
+    "labeled_columns": [
+      "email_id",
+      "subject",
+      "body",
+      "clean_text",
+      "stat_text",
+      "label",
+      "label_num"
+    ],
+    "unlabeled_columns": [
+      "email_id",
+      "subject",
+      "body",
+      "clean_text",
+      "stat_text"
+    ]
+  },
+  "expected_output_files": [
+    "data/processed/spam_ham_dataset.csv",
+    "data/train.csv",
+    "data/validation.csv",
+    "data/test.csv",
+    "data/unlabeled_sample.csv"
+  ]
+}

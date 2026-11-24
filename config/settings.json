@@ -1,0 +1,15 @@
+{
+  "default_mode": "combined",
+  "thresholds": {
+    "rule_only": 2.0,
+    "statistics_only": 0.5,
+    "combined": 1.0
+  },
+  "paths": {
+    "rules_config": "config/rules.json",
+    "stats_model": "data/processed/keyword_stats.json",
+    "train_csv": "data/train.csv",
+    "validation_csv": "data/validation.csv",
+    "test_csv": "data/test.csv"
+  }
+}

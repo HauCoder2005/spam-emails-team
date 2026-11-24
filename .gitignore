@@ -1,0 +1,37 @@
+# Python cache & virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+.pytest_cache/
+
+# Secrets & credentials (NEVER commit)
+kaggle.json
+.env
+
+# Raw & processed datasets (reproducible via `python scripts/setup_data.py`)
+data/raw/*
+data/processed/*
+!data/raw/.gitkeep
+!data/processed/.gitkeep
+
+# Generated split datasets (reproducible via `python scripts/setup_data.py`)
+data/train.csv
+data/validation.csv
+data/test.csv
+data/unlabeled_sample.csv
+
+# Archives
+*.tar.bz2
+*.tar.gz
+*.zip
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS & IDE files
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
