@@ -1,0 +1,76 @@
+﻿email_id,label,label_num,rule_score,matched_rules
+E0351,spam,1,0.0,[]
+E0352,spam,1,0.0,[]
+E0353,spam,1,0.0,[]
+E0354,ham,0,-5.0,"[{""id"": ""R017"", ""pattern"": ""daren"", ""weight"": -3.0}, {""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}]"
+E0355,spam,1,0.0,[]
+E0356,ham,0,0.0,[]
+E0357,spam,1,4.0,"[{""id"": ""R003"", ""pattern"": ""paliourg"", ""weight"": 4.0}]"
+E0358,ham,0,0.0,[]
+E0359,spam,1,5.0,"[{""id"": ""R003"", ""pattern"": ""paliourg"", ""weight"": 4.0}, {""id"": ""R004"", ""pattern"": ""product"", ""weight"": 4.0}, {""id"": ""R007"", ""pattern"": ""offers"", ""weight"": 3.0}, {""id"": ""R008"", ""pattern"": ""pills"", ""weight"": 3.0}, {""id"": ""R012"", ""pattern"": ""health"", ""weight"": 3.0}]"
+E0360,ham,0,-3.0,"[{""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}]"
+E0361,spam,1,0.0,[]
+E0362,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}]"
+E0363,spam,1,0.0,[]
+E0364,ham,0,-3.0,"[{""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}]"
+E0365,spam,1,0.0,[]
+E0366,spam,1,3.0,"[{""id"": ""R008"", ""pattern"": ""pills"", ""weight"": 3.0}]"
+E0367,spam,1,4.0,"[{""id"": ""R003"", ""pattern"": ""paliourg"", ""weight"": 4.0}]"
+E0368,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}, {""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}, {""id"": ""R020"", ""pattern"": ""hou"", ""weight"": -3.0}, {""id"": ""R021"", ""pattern"": ""hou ect"", ""weight"": -3.0}, {""id"": ""R022"", ""pattern"": ""pm to"", ""weight"": -3.0}, {""id"": ""R023"", ""pattern"": ""ect ect"", ""weight"": -3.0}, {""id"": ""R024"", ""pattern"": ""hou ect ect"", ""weight"": -3.0}, {""id"": ""R026"", ""pattern"": ""ect cc"", ""weight"": -3.0}, {""id"": ""R027"", ""pattern"": ""ect ect cc"", ""weight"": -3.0}, {""id"": ""R028"", ""pattern"": ""forwarded"", ""weight"": -3.0}]"
+E0369,ham,0,-3.0,"[{""id"": ""R017"", ""pattern"": ""daren"", ""weight"": -3.0}]"
+E0370,ham,0,0.0,[]
+E0371,spam,1,5.0,"[{""id"": ""R002"", ""pattern"": ""2004"", ""weight"": 4.0}, {""id"": ""R003"", ""pattern"": ""paliourg"", ""weight"": 4.0}]"
+E0372,ham,0,-5.0,"[{""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}, {""id"": ""R020"", ""pattern"": ""hou"", ""weight"": -3.0}, {""id"": ""R021"", ""pattern"": ""hou ect"", ""weight"": -3.0}, {""id"": ""R022"", ""pattern"": ""pm to"", ""weight"": -3.0}, {""id"": ""R023"", ""pattern"": ""ect ect"", ""weight"": -3.0}, {""id"": ""R024"", ""pattern"": ""hou ect ect"", ""weight"": -3.0}, {""id"": ""R025"", ""pattern"": ""am to"", ""weight"": -3.0}, {""id"": ""R026"", ""pattern"": ""ect cc"", ""weight"": -3.0}, {""id"": ""R027"", ""pattern"": ""ect ect cc"", ""weight"": -3.0}, {""id"": ""R028"", ""pattern"": ""forwarded"", ""weight"": -3.0}]"
+E0373,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}]"
+E0374,ham,0,-5.0,"[{""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}, {""id"": ""R017"", ""pattern"": ""daren"", ""weight"": -3.0}, {""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}, {""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}, {""id"": ""R020"", ""pattern"": ""hou"", ""weight"": -3.0}, {""id"": ""R021"", ""pattern"": ""hou ect"", ""weight"": -3.0}, {""id"": ""R022"", ""pattern"": ""pm to"", ""weight"": -3.0}, {""id"": ""R023"", ""pattern"": ""ect ect"", ""weight"": -3.0}, {""id"": ""R024"", ""pattern"": ""hou ect ect"", ""weight"": -3.0}, {""id"": ""R026"", ""pattern"": ""ect cc"", ""weight"": -3.0}, {""id"": ""R027"", ""pattern"": ""ect ect cc"", ""weight"": -3.0}, {""id"": ""R028"", ""pattern"": ""forwarded"", ""weight"": -3.0}]"
+E0375,ham,0,0.0,[]
+E0376,spam,1,4.0,"[{""id"": ""R001"", ""pattern"": ""microsoft"", ""weight"": 4.0}]"
+E0377,ham,0,0.0,[]
+E0378,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R017"", ""pattern"": ""daren"", ""weight"": -3.0}, {""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}, {""id"": ""R020"", ""pattern"": ""hou"", ""weight"": -3.0}, {""id"": ""R021"", ""pattern"": ""hou ect"", ""weight"": -3.0}, {""id"": ""R023"", ""pattern"": ""ect ect"", ""weight"": -3.0}, {""id"": ""R024"", ""pattern"": ""hou ect ect"", ""weight"": -3.0}, {""id"": ""R025"", ""pattern"": ""am to"", ""weight"": -3.0}, {""id"": ""R026"", ""pattern"": ""ect cc"", ""weight"": -3.0}, {""id"": ""R027"", ""pattern"": ""ect ect cc"", ""weight"": -3.0}, {""id"": ""R028"", ""pattern"": ""forwarded"", ""weight"": -3.0}]"
+E0379,spam,1,0.0,[]
+E0380,spam,1,0.0,[]
+E0381,spam,1,5.0,"[{""id"": ""R002"", ""pattern"": ""2004"", ""weight"": 4.0}, {""id"": ""R004"", ""pattern"": ""product"", ""weight"": 4.0}]"
+E0382,ham,0,-2.0,"[{""id"": ""R004"", ""pattern"": ""product"", ""weight"": 4.0}, {""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}]"
+E0383,spam,1,5.0,"[{""id"": ""R002"", ""pattern"": ""2004"", ""weight"": 4.0}, {""id"": ""R003"", ""pattern"": ""paliourg"", ""weight"": 4.0}, {""id"": ""R007"", ""pattern"": ""offers"", ""weight"": 3.0}]"
+E0384,spam,1,0.0,[]
+E0385,spam,1,0.0,[]
+E0386,spam,1,0.0,[]
+E0387,spam,1,5.0,"[{""id"": ""R001"", ""pattern"": ""microsoft"", ""weight"": 4.0}, {""id"": ""R002"", ""pattern"": ""2004"", ""weight"": 4.0}]"
+E0388,spam,1,3.0,"[{""id"": ""R006"", ""pattern"": ""biz"", ""weight"": 3.0}]"
+E0389,ham,0,-5.0,"[{""id"": ""R004"", ""pattern"": ""product"", ""weight"": 4.0}, {""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R022"", ""pattern"": ""pm to"", ""weight"": -3.0}, {""id"": ""R025"", ""pattern"": ""am to"", ""weight"": -3.0}]"
+E0390,spam,1,0.0,[]
+E0391,ham,0,0.0,[]
+E0392,ham,0,-5.0,"[{""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}, {""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}, {""id"": ""R020"", ""pattern"": ""hou"", ""weight"": -3.0}, {""id"": ""R021"", ""pattern"": ""hou ect"", ""weight"": -3.0}, {""id"": ""R022"", ""pattern"": ""pm to"", ""weight"": -3.0}, {""id"": ""R023"", ""pattern"": ""ect ect"", ""weight"": -3.0}, {""id"": ""R024"", ""pattern"": ""hou ect ect"", ""weight"": -3.0}, {""id"": ""R025"", ""pattern"": ""am to"", ""weight"": -3.0}, {""id"": ""R026"", ""pattern"": ""ect cc"", ""weight"": -3.0}, {""id"": ""R027"", ""pattern"": ""ect ect cc"", ""weight"": -3.0}]"
+E0393,ham,0,0.0,[]
+E0394,ham,0,-3.0,"[{""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}]"
+E0395,spam,1,0.0,[]
+E0396,ham,0,0.0,[]
+E0397,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}, {""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}, {""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}, {""id"": ""R020"", ""pattern"": ""hou"", ""weight"": -3.0}, {""id"": ""R021"", ""pattern"": ""hou ect"", ""weight"": -3.0}, {""id"": ""R022"", ""pattern"": ""pm to"", ""weight"": -3.0}, {""id"": ""R023"", ""pattern"": ""ect ect"", ""weight"": -3.0}, {""id"": ""R024"", ""pattern"": ""hou ect ect"", ""weight"": -3.0}, {""id"": ""R025"", ""pattern"": ""am to"", ""weight"": -3.0}, {""id"": ""R026"", ""pattern"": ""ect cc"", ""weight"": -3.0}, {""id"": ""R027"", ""pattern"": ""ect ect cc"", ""weight"": -3.0}, {""id"": ""R028"", ""pattern"": ""forwarded"", ""weight"": -3.0}]"
+E0398,spam,1,5.0,"[{""id"": ""R003"", ""pattern"": ""paliourg"", ""weight"": 4.0}, {""id"": ""R012"", ""pattern"": ""health"", ""weight"": 3.0}]"
+E0399,spam,1,3.0,"[{""id"": ""R013"", ""pattern"": ""hello"", ""weight"": 3.0}]"
+E0400,ham,0,-5.0,"[{""id"": ""R017"", ""pattern"": ""daren"", ""weight"": -3.0}, {""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}]"
+E0401,spam,1,4.0,"[{""id"": ""R004"", ""pattern"": ""product"", ""weight"": 4.0}]"
+E0402,spam,1,0.0,[]
+E0403,ham,0,0.0,[]
+E0404,ham,0,-3.0,"[{""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}]"
+E0405,ham,0,3.0,"[{""id"": ""R013"", ""pattern"": ""hello"", ""weight"": 3.0}]"
+E0406,spam,1,0.0,[]
+E0407,spam,1,4.0,"[{""id"": ""R002"", ""pattern"": ""2004"", ""weight"": 4.0}]"
+E0408,spam,1,0.0,[]
+E0409,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}, {""id"": ""R025"", ""pattern"": ""am to"", ""weight"": -3.0}]"
+E0410,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R017"", ""pattern"": ""daren"", ""weight"": -3.0}, {""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}, {""id"": ""R020"", ""pattern"": ""hou"", ""weight"": -3.0}, {""id"": ""R021"", ""pattern"": ""hou ect"", ""weight"": -3.0}, {""id"": ""R022"", ""pattern"": ""pm to"", ""weight"": -3.0}, {""id"": ""R023"", ""pattern"": ""ect ect"", ""weight"": -3.0}, {""id"": ""R024"", ""pattern"": ""hou ect ect"", ""weight"": -3.0}, {""id"": ""R026"", ""pattern"": ""ect cc"", ""weight"": -3.0}, {""id"": ""R027"", ""pattern"": ""ect ect cc"", ""weight"": -3.0}, {""id"": ""R028"", ""pattern"": ""forwarded"", ""weight"": -3.0}]"
+E0411,spam,1,5.0,"[{""id"": ""R002"", ""pattern"": ""2004"", ""weight"": 4.0}, {""id"": ""R006"", ""pattern"": ""biz"", ""weight"": 3.0}, {""id"": ""R013"", ""pattern"": ""hello"", ""weight"": 3.0}]"
+E0412,spam,1,5.0,"[{""id"": ""R004"", ""pattern"": ""product"", ""weight"": 4.0}, {""id"": ""R007"", ""pattern"": ""offers"", ""weight"": 3.0}]"
+E0413,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}]"
+E0414,spam,1,3.0,"[{""id"": ""R012"", ""pattern"": ""health"", ""weight"": 3.0}]"
+E0415,ham,0,-5.0,"[{""id"": ""R017"", ""pattern"": ""daren"", ""weight"": -3.0}, {""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}, {""id"": ""R020"", ""pattern"": ""hou"", ""weight"": -3.0}, {""id"": ""R021"", ""pattern"": ""hou ect"", ""weight"": -3.0}, {""id"": ""R023"", ""pattern"": ""ect ect"", ""weight"": -3.0}, {""id"": ""R024"", ""pattern"": ""hou ect ect"", ""weight"": -3.0}, {""id"": ""R025"", ""pattern"": ""am to"", ""weight"": -3.0}, {""id"": ""R026"", ""pattern"": ""ect cc"", ""weight"": -3.0}, {""id"": ""R027"", ""pattern"": ""ect ect cc"", ""weight"": -3.0}, {""id"": ""R028"", ""pattern"": ""forwarded"", ""weight"": -3.0}]"
+E0416,spam,1,3.0,"[{""id"": ""R007"", ""pattern"": ""offers"", ""weight"": 3.0}]"
+E0417,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}, {""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}]"
+E0418,spam,1,0.0,[]
+E0419,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}, {""id"": ""R017"", ""pattern"": ""daren"", ""weight"": -3.0}, {""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}, {""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}, {""id"": ""R020"", ""pattern"": ""hou"", ""weight"": -3.0}, {""id"": ""R021"", ""pattern"": ""hou ect"", ""weight"": -3.0}, {""id"": ""R022"", ""pattern"": ""pm to"", ""weight"": -3.0}, {""id"": ""R023"", ""pattern"": ""ect ect"", ""weight"": -3.0}, {""id"": ""R024"", ""pattern"": ""hou ect ect"", ""weight"": -3.0}, {""id"": ""R025"", ""pattern"": ""am to"", ""weight"": -3.0}, {""id"": ""R026"", ""pattern"": ""ect cc"", ""weight"": -3.0}, {""id"": ""R027"", ""pattern"": ""ect ect cc"", ""weight"": -3.0}]"
+E0420,spam,1,5.0,"[{""id"": ""R002"", ""pattern"": ""2004"", ""weight"": 4.0}, {""id"": ""R003"", ""pattern"": ""paliourg"", ""weight"": 4.0}, {""id"": ""R007"", ""pattern"": ""offers"", ""weight"": 3.0}]"
+E0421,ham,0,-5.0,"[{""id"": ""R015"", ""pattern"": ""enron"", ""weight"": -3.0}, {""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}, {""id"": ""R018"", ""pattern"": ""ect"", ""weight"": -3.0}, {""id"": ""R025"", ""pattern"": ""am to"", ""weight"": -3.0}, {""id"": ""R028"", ""pattern"": ""forwarded"", ""weight"": -3.0}]"
+E0422,ham,0,-5.0,"[{""id"": ""R017"", ""pattern"": ""daren"", ""weight"": -3.0}, {""id"": ""R019"", ""pattern"": ""meter"", ""weight"": -3.0}]"
+E0423,ham,0,0.0,[]
+E0424,ham,0,-3.0,"[{""id"": ""R016"", ""pattern"": ""hpl"", ""weight"": -3.0}]"
+E0425,spam,1,0.0,[]

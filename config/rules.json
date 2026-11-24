@@ -1,0 +1,175 @@
+{
+  "version": "1.0",
+  "min_score": -5.0,
+  "max_score": 5.0,
+  "rules": [
+    {
+      "id": "R001",
+      "pattern": "microsoft",
+      "weight": 4,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=13, Ham DF=0)."
+    },
+    {
+      "id": "R002",
+      "pattern": "2004",
+      "weight": 4,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=12, Ham DF=0)."
+    },
+    {
+      "id": "R003",
+      "pattern": "paliourg",
+      "weight": 4,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=12, Ham DF=0)."
+    },
+    {
+      "id": "R004",
+      "pattern": "product",
+      "weight": 4,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=12, Ham DF=0)."
+    },
+    {
+      "id": "R005",
+      "pattern": "your browser",
+      "weight": 4,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=12, Ham DF=0)."
+    },
+    {
+      "id": "R006",
+      "pattern": "biz",
+      "weight": 3,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=11, Ham DF=0)."
+    },
+    {
+      "id": "R007",
+      "pattern": "offers",
+      "weight": 3,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=11, Ham DF=0)."
+    },
+    {
+      "id": "R008",
+      "pattern": "pills",
+      "weight": 3,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=11, Ham DF=0)."
+    },
+    {
+      "id": "R009",
+      "pattern": "and paste",
+      "weight": 3,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=10, Ham DF=0)."
+    },
+    {
+      "id": "R010",
+      "pattern": "copy and",
+      "weight": 3,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=10, Ham DF=0)."
+    },
+    {
+      "id": "R011",
+      "pattern": "copy and paste",
+      "weight": 3,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=10, Ham DF=0)."
+    },
+    {
+      "id": "R012",
+      "pattern": "health",
+      "weight": 3,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=10, Ham DF=0)."
+    },
+    {
+      "id": "R013",
+      "pattern": "hello",
+      "weight": 3,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=10, Ham DF=0)."
+    },
+    {
+      "id": "R014",
+      "pattern": "into your browser",
+      "weight": 3,
+      "description": "Tín hiệu nghiêng về SPAM theo document frequency trên tập Train (Spam DF=10, Ham DF=0)."
+    },
+    {
+      "id": "R015",
+      "pattern": "enron",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=65)."
+    },
+    {
+      "id": "R016",
+      "pattern": "hpl",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=54)."
+    },
+    {
+      "id": "R017",
+      "pattern": "daren",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=51)."
+    },
+    {
+      "id": "R018",
+      "pattern": "ect",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=45)."
+    },
+    {
+      "id": "R019",
+      "pattern": "meter",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=45)."
+    },
+    {
+      "id": "R020",
+      "pattern": "hou",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=43)."
+    },
+    {
+      "id": "R021",
+      "pattern": "hou ect",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=43)."
+    },
+    {
+      "id": "R022",
+      "pattern": "pm to",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=40)."
+    },
+    {
+      "id": "R023",
+      "pattern": "ect ect",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=39)."
+    },
+    {
+      "id": "R024",
+      "pattern": "hou ect ect",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=39)."
+    },
+    {
+      "id": "R025",
+      "pattern": "am to",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=36)."
+    },
+    {
+      "id": "R026",
+      "pattern": "ect cc",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=35)."
+    },
+    {
+      "id": "R027",
+      "pattern": "ect ect cc",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=35)."
+    },
+    {
+      "id": "R028",
+      "pattern": "forwarded",
+      "weight": -3,
+      "description": "Tín hiệu nghiêng về HAM theo document frequency trên tập Train (Spam DF=0, Ham DF=35)."
+    }
+  ]
+}
