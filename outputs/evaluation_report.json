@@ -1,0 +1,196 @@
+{
+  "author": "Ph? ??ng Nguy?n Huynh",
+  "dataset_summary": {
+    "train_total": 350,
+    "validation_total": 75,
+    "test_total": 75,
+    "test_spam": 37,
+    "test_ham": 38,
+    "positive_class": "spam"
+  },
+  "thresholds": {
+    "rule_only": 0.0,
+    "statistics_only": -0.75,
+    "combined": -0.75
+  },
+  "leakage_audit": {
+    "has_leakage": false,
+    "overlap_counts": {
+      "train_val": 0,
+      "train_test": 0,
+      "val_test": 0
+    },
+    "overlap_ids": {
+      "train_val": [],
+      "train_test": [],
+      "val_test": []
+    }
+  },
+  "validation_metrics": {
+    "majority_baseline": {
+      "total": 75,
+      "tp": 0,
+      "tn": 37,
+      "fp": 0,
+      "fn": 38,
+      "accuracy": 0.4933,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "fpr": 0.0,
+      "warnings": [
+        "Precision không xác định do mẫu số bằng 0 (trả về 0.0).",
+        "F1 không xác định do mẫu số bằng 0 (trả về 0.0)."
+      ],
+      "baseline_label": "ham"
+    },
+    "rule_only": {
+      "total": 75,
+      "tp": 38,
+      "tn": 25,
+      "fp": 12,
+      "fn": 0,
+      "accuracy": 0.84,
+      "precision": 0.76,
+      "recall": 1.0,
+      "f1": 0.8636,
+      "fpr": 0.3243,
+      "warnings": []
+    },
+    "statistics_only": {
+      "total": 75,
+      "tp": 36,
+      "tn": 35,
+      "fp": 2,
+      "fn": 2,
+      "accuracy": 0.9467,
+      "precision": 0.9474,
+      "recall": 0.9474,
+      "f1": 0.9474,
+      "fpr": 0.0541,
+      "warnings": []
+    },
+    "combined": {
+      "total": 75,
+      "tp": 37,
+      "tn": 34,
+      "fp": 3,
+      "fn": 1,
+      "accuracy": 0.9467,
+      "precision": 0.925,
+      "recall": 0.9737,
+      "f1": 0.9487,
+      "fpr": 0.0811,
+      "warnings": []
+    }
+  },
+  "test_metrics": {
+    "majority_baseline": {
+      "total": 75,
+      "tp": 0,
+      "tn": 38,
+      "fp": 0,
+      "fn": 37,
+      "accuracy": 0.5067,
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "fpr": 0.0,
+      "warnings": [
+        "Precision không xác định do mẫu số bằng 0 (trả về 0.0).",
+        "F1 không xác định do mẫu số bằng 0 (trả về 0.0)."
+      ],
+      "baseline_label": "ham"
+    },
+    "rule_only": {
+      "total": 75,
+      "tp": 37,
+      "tn": 30,
+      "fp": 8,
+      "fn": 0,
+      "accuracy": 0.8933,
+      "precision": 0.8222,
+      "recall": 1.0,
+      "f1": 0.9024,
+      "fpr": 0.2105,
+      "warnings": []
+    },
+    "statistics_only": {
+      "total": 75,
+      "tp": 30,
+      "tn": 38,
+      "fp": 0,
+      "fn": 7,
+      "accuracy": 0.9067,
+      "precision": 1.0,
+      "recall": 0.8108,
+      "f1": 0.8955,
+      "fpr": 0.0,
+      "warnings": []
+    },
+    "combined": {
+      "total": 75,
+      "tp": 33,
+      "tn": 37,
+      "fp": 1,
+      "fn": 4,
+      "accuracy": 0.9333,
+      "precision": 0.9706,
+      "recall": 0.8919,
+      "f1": 0.9296,
+      "fpr": 0.0263,
+      "warnings": []
+    }
+  },
+  "error_analysis": {
+    "combined_false_positives": [
+      {
+        "email_id": "E0464",
+        "subject": "fw : candle lighting",
+        "rule_score": 2.0,
+        "stat_score": -0.8,
+        "combined_score": 1.2,
+        "matched_rules": "R012:guaranteed(+2.0)",
+        "top_keywords": "2001(-2.00); guaranteed(+2.00); pm(-2.00); smith(-2.00); stop(+2.00)"
+      }
+    ],
+    "combined_false_negatives": [
+      {
+        "email_id": "E0433",
+        "subject": "never see a doctor again to get the medocations you want vo 4",
+        "rule_score": 0.0,
+        "stat_score": -2.1986,
+        "combined_score": -2.1986,
+        "matched_rules": "",
+        "top_keywords": "03(-2.00); doctor(+2.00); pm(-2.00); tell(-1.79); 26(-1.70)"
+      },
+      {
+        "email_id": "E0447",
+        "subject": "coca cola , mbna america , nascar partner with otcbb : imts",
+        "rule_score": 1.5,
+        "stat_score": -4.0,
+        "combined_score": -2.5,
+        "matched_rules": "R016:investment(+1.5)",
+        "top_keywords": "02(-2.00); 03(-2.00); 04(-2.00); 08(-2.00); agreement(-2.00)"
+      },
+      {
+        "email_id": "E0461",
+        "subject": "quality rx meds supplier goode",
+        "rule_score": 0.0,
+        "stat_score": -2.4,
+        "combined_score": -2.4,
+        "matched_rules": "",
+        "top_keywords": "cc(-2.00); ic(-2.00); ls(-2.00); meds(+2.00); pg(-2.00)"
+      },
+      {
+        "email_id": "E0492",
+        "subject": "today ' s daily sales for angelo only",
+        "rule_score": 0.0,
+        "stat_score": -3.5373,
+        "combined_score": -3.5373,
+        "matched_rules": "",
+        "top_keywords": "daily(-2.00); contract(-1.83); mary(-1.79); agree(-1.61); chad(-1.61)"
+      }
+    ]
+  }
+}
